@@ -1,0 +1,91 @@
+<html>
+<head>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,">
+
+</head>
+
+<script>
+var slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+
+<body>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'myplace/index-style.css' %}" />
+<ul>
+  <li><a href="{% url 'myplace:index' %}" method="get">Home</a></li>
+  <li><a href="{% url 'myplace:catalog' %}" method="get">Catalog</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Type</a>
+    <div class="dropdown-content">
+      {% for type in the_type %}
+      <a href="{% url 'myplace:thefilter' type.types  %}" method="get">{{ type.types }}</a>
+      {% endfor %}
+    </div>
+  </li>
+  <li class="right"><a href="{% url 'myplace:about' %}" method="get">About</a></li>
+</ul>
+
+<br>
+
+<div class="slideshow-container">
+{% for select in image %}
+{% if forloop.counter == 1 %}
+<div class="mySlides fade" style="display:block;">
+{% else %}
+<div class="mySlides fade" style="display:none;">
+{% endif %}
+ <a href="{% url 'myplace:details' select.id %}" method="get">
+  <img src="{% static '/myplace/' %}{{ select.place_name }}/index.jpg" />
+</a><br>
+  <b><center><div class="blackbox">{{ select.place_thai_name }}</div></center></b>
+</div>
+{% endfor %}
+
+
+<a class="prev" onclick="plusSlides(-1)"><span style="font-size:50px">&#10094;</a></span>
+<a class="next" onclick="plusSlides(1)"><span style="font-size:50px">&#10095;</a></span>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span>
+  <span class="dot" onclick="currentSlide(4)"></span>
+  <span class="dot" onclick="currentSlide(5)"></span>
+  <span class="dot" onclick="currentSlide(6)"></span> 
+  <span class="dot" onclick="currentSlide(7)"></span> 
+  <span class="dot" onclick="currentSlide(8)"></span>
+  <span class="dot" onclick="currentSlide(9)"></span>
+  <span class="dot" onclick="currentSlide(10)"></span>    
+</div>
+
+</body>
+</html>

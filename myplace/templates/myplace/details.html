@@ -1,0 +1,48 @@
+<html>
+<head>
+</head>
+<body>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'myplace/details-style.css' %}" />
+<ul>
+  <li><a href="{% url 'myplace:index' %}" method="get">Home</a></li>
+  <li><a href="{% url 'myplace:catalog' %}" method="get">Catalog</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Type</a>
+    <div class="dropdown-content">
+      {% for type in the_type %}
+      <a href="{% url 'myplace:thefilter' type.types  %}" method="get">{{ type.types }}</a>
+      {% endfor %}
+    </div>
+  </li>
+<li class="right"><a href="{% url 'myplace:about' %}" method="get">About</a></li>
+</ul>
+<br>
+<div class="back" style="height:400px;">
+<img class="left" src="{% static '/myplace/' %}{{ picture.place_name }}/picture1.jpg" />
+<br>
+<p>{{ block1 }}</p>
+
+<br>
+  </div>
+
+</div>
+<br>
+<div class="back" style="height:400px;">
+<img class="right" src="{% static '/myplace/' %}{{ picture.place_name }}/picture2.jpg" />
+<br>
+<p>{{ block2 }}</p>
+
+
+</div>
+<br>
+<div class="back" style="height:400px;">
+<img class="left" src="{% static '/myplace/' %}{{ picture.place_name }}/picture3.jpg" />
+<br>
+<p>{{ block3 }}</p>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<html>
+<head>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'myplace/abouts-style.css' %}" />
+<ul>
+  <li><a href="{% url 'myplace:index' %}" method="get">Home</a></li>
+  <li><a href="{% url 'myplace:catalog' %}" method="get">Catalog</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Type</a>
+    <div class="dropdown-content">
+      {% for type in the_type %}
+      <a href="{% url 'myplace:thefilter' type.types  %}" method="get">{{ type.types }}</a>
+      {% endfor %}
+    </div>
+  </li>
+   <li class="right"><a href="{% url 'myplace:about' %}" method="get">About</a></li>
+</ul>
+<div>
+<img src="{% static "myplace/sea.jpg" %}" style="width:100%;height:75%" />
+<div class="w3-display-middle blackbox "><b><p align="center" style="font-size:84px;" >ABOUT ME</b></p>
+</div>
+</div>
+<br><br>
+
+<center><div style="width:850px;border:15px solid black;padding:30px;border-color:#FAAC58;background-color:#FF4000;">
+<p align="center" style="font-size:26px;color:white;">ที่กระผมสร้างเว็บไซต์นี้ขึ้นมานั้น เพื่อเป็นการศึกษา framework ชื่อ django โดยได้สร้างเป็นเว็บไซต์เกี่ยวกับสถานที่ท่องเที่ยวในกรุงเทพ </p>
+</div></center>
+<br>
+<div>
+<img src="{% static "myplace/index.png" %}" style="width:620px;height:350px;margin:10px;"class="left" />
+<img src="{% static "myplace/loom.png" %}" style="width:620px;height:350px;margin:10px;"class="right" />
+</div>
+<div>
+<center><p style="margin:25px;font-size:20px;color:#FF4000;padding-top:20px;">โดยภายในเว็บไซต์ จะแสดงสถานที่ท่องเที่ยวต่างๆที่น่าสนใจในกรุงเทพมหานคร พร้องข้อมูล อาทิ ที่ตั้ง เวลาเปิด - ปิด บริการเป็นต้น พร้อมรายละเอียด พอสังเขปของสถานที่นั้นๆ โดยได้แบ่งประเภท ของสถานที่ท่องเที่ยวไว้ เพื่อให้ง่ายต่อการค้นหา </p>
+</div></center>
+<br>
+<div>
+<center><img src="{% static "myplace/type.png" %}" style="width:750px;height:450px;" /></center>
+<br>
+</div>
+<center><div style="width:650px;height:100px;border:10px solid black;padding:1px;border-color:#FAAC58;background-color:#FF4000;">
+<p style="margin:25px;font-size:24px;color:white;">สามารถเลือกประเภท ของสถานที่ท่องเที่ยวที่สนใจได้ </b></center>
+</div>
+<div>
+<img src="{% static "myplace/details.png" %}" style="width:620px;height:350px;margin:10px;" class="left"/>
+<img src="{% static "myplace/catalog.png" %}" style="width:620px;height:350px;margin:10px;" class="right"/>
+<br>
+<center><p style="margin:25px;font-size:20px;color:#FF4000;padding-left:70px;padding-right:70px;">เมื่อเลือกสถานที่ที่สนใจแล้ว จะแสดงข้อมูลของสถานที่นั้นๆ อาทิ เวลา ทำการ สถานที่ตั้ง เป็นต้น
+หรือสามารถ ดูสถานที่ทั้งหมดในเว็บไซต์นี้ก็ได้ </b></center>
+</div>
+
+
+</body>
+</html>
